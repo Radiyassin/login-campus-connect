@@ -20,6 +20,8 @@ const LoginPage = () => {
     e.preventDefault();
     // This is where you'll handle email/password login
     console.log("Email login submitted");
+    // For demo purposes, redirect to student dashboard
+    window.location.href = "/student";
   };
 
   return (
