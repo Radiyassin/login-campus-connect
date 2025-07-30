@@ -23,12 +23,12 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-education-blue/10 via-background to-education-orange/10">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-tech-purple/8 via-background to-tech-teal/8">
       <div className="w-full max-w-md space-y-6">
         {/* Header */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
-            <div className="p-3 bg-gradient-to-r from-education-blue to-education-orange rounded-full">
+            <div className="p-3 bg-gradient-to-r from-tech-purple to-tech-teal rounded-full shadow-lg">
               <GraduationCap className="w-8 h-8 text-white" />
             </div>
           </div>
@@ -142,46 +142,17 @@ const LoginPage = () => {
 
               <Button
                 type="submit"
-                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-education-blue to-education-orange hover:from-education-blue/90 hover:to-education-orange/90 transition-all duration-200"
+                className="w-full h-12 text-base font-semibold bg-gradient-to-r from-tech-purple to-tech-teal hover:from-tech-purple/90 hover:to-tech-teal/90 transition-all duration-200 shadow-lg"
               >
                 Sign In
               </Button>
             </form>
 
-            {/* User Type Selection */}
-            <div className="pt-4 border-t">
-              <p className="text-center text-sm text-muted-foreground mb-3">
-                Sign in as:
-              </p>
-              <div className="grid grid-cols-2 gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-10 hover:bg-education-blue/10 hover:border-education-blue/30"
-                >
-                  Student
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-10 hover:bg-education-orange/10 hover:border-education-orange/30"
-                >
-                  Professor
-                </Button>
-              </div>
-            </div>
-
             {/* Footer Links */}
-            <div className="text-center space-y-2">
-              <a
-                href="#"
-                className="text-sm text-education-blue hover:underline"
-              >
-                Forgot password?
-              </a>
+            <div className="text-center">
               <div className="text-sm text-muted-foreground">
                 Need help?{" "}
-                <a href="#" className="text-education-blue hover:underline">
+                <a href="#" className="text-tech-purple hover:underline">
                   Contact IT Support
                 </a>
               </div>
@@ -193,11 +164,11 @@ const LoginPage = () => {
         <div className="text-center text-xs text-muted-foreground">
           <p>
             By signing in, you agree to our{" "}
-            <a href="#" className="text-education-blue hover:underline">
+            <a href="#" className="text-tech-purple hover:underline">
               Terms of Service
             </a>{" "}
             and{" "}
-            <a href="#" className="text-education-blue hover:underline">
+            <a href="#" className="text-tech-purple hover:underline">
               Privacy Policy
             </a>
           </p>
