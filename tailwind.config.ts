@@ -52,6 +52,10 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				'education-blue': 'hsl(var(--education-blue))',
+				'education-orange': 'hsl(var(--education-orange))',
+				'google-red': 'hsl(var(--google-red))',
+				'gitlab-orange': 'hsl(var(--gitlab-orange))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
