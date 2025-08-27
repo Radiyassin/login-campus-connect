@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Plus, Users, Calendar, FolderOpen, UserPlus, Search } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { Plus, Users, Calendar, FolderOpen, UserPlus, Search, Upload } from "lucide-react";
 
 interface Project {
   id: string;
@@ -19,6 +20,8 @@ interface Project {
 }
 
 const StudentDashboard = () => {
+  const { toast } = useToast();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [projects, setProjects] = useState<Project[]>([
     {
       id: "1",
@@ -68,6 +71,34 @@ const StudentDashboard = () => {
     ));
     setMemberEmail("");
     setIsAddMemberModalOpen(false);
+  };
+
+  const handleOpenProject = (projectId: string) => {
+    setSelectedProjectId(projectId);
+    fileInputRef.current?.click();
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      if (file.type === 'application/pdf') {
+        const project = projects.find(p => p.id === selectedProjectId);
+        toast({
+          title: "PDF Uploaded Successfully",
+          description: `File "${file.name}" uploaded for project "${project?.title}"`,
+        });
+        // Here you would typically upload the file to your backend/storage
+        console.log('Uploaded PDF:', file.name, 'for project:', selectedProjectId);
+      } else {
+        toast({
+          title: "Invalid File Type",
+          description: "Please select a PDF file only.",
+          variant: "destructive",
+        });
+      }
+      // Reset the input
+      event.target.value = '';
+    }
   };
 
   const getStatusColor = (status: string) => {
@@ -217,9 +248,14 @@ const StudentDashboard = () => {
                   </div>
                   
                   <div className="flex space-x-2">
-                    <Button variant="outline" size="sm" className="flex-1">
-                      <FolderOpen className="w-4 h-4 mr-1" />
-                      Open
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="flex-1"
+                      onClick={() => handleOpenProject(project.id)}
+                    >
+                      <Upload className="w-4 h-4 mr-1" />
+                      Upload PDF
                     </Button>
                     
                     <Dialog open={isAddMemberModalOpen} onOpenChange={setIsAddMemberModalOpen}>
@@ -268,6 +304,15 @@ const StudentDashboard = () => {
           </div>
         </div>
       </div>
+      
+      {/* Hidden file input for PDF upload */}
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileUpload}
+        accept=".pdf"
+        style={{ display: 'none' }}
+      />
     </div>
   );
 };
